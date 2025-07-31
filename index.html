@@ -1,50 +1,58 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <title>Mein-Spiel</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mein Spiel</title>
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="script.js"></script>
 </head>
 <body>
-  <div id="login-screen">
-    <h1>Willkommen bei Mein-Spiel</h1>
-    <input type="text" id="username" placeholder="Dein Name">
-    <button onclick="login()">Einloggen</button>
+  <!-- LOGIN -->
+  <div id="login">
+    <h2>Login</h2>
+    <input type="text" id="username" placeholder="Dein Name" />
+    <button onclick="login()">Starten</button>
   </div>
 
-  <div id="birth-screen" class="hidden">
-    <h2>Herzlichen Glückwunsch zur Geburt!</h2>
-    <img src="https://via.placeholder.com/200x150.png?text=👶+Baby" alt="Babybild">
-    <p id="prophecy"></p>
-    <button onclick="goToStart()">Weiter</button>
-  </div>
-
-  <div id="start-screen" class="hidden">
+  <!-- SPIEL -->
+  <div id="game" style="display: none;">
     <header>
-      <h1>Mein-Spiel</h1>
-      <button id="logout-button" onclick="logout()">Logout</button>
+      Willkommen, <span id="usernameDisplay"></span>!
+      <button onclick="logout()">Logout</button>
     </header>
+
     <main>
-      <aside class="left">
-        <h2>Aktionen</h2>
+      <div class="sidebar-left">
+        <h3>Aktionen</h3>
         <ul>
-          <li onclick="showInfo('Beruf')">Beruf</li>
-          <li onclick="showInfo('Freunde')">Freunde</li>
-          <li onclick="showInfo('Freizeit')">Freizeit</li>
-          <li onclick="showInfo('Postfach')">Postfach</li>
-          <li onclick="showInfo('Familie')">Familie</li>
+          <li>Postfach</li>
+          <li>Beruf</li>
+          <li>Freunde</li>
+          <li>Freizeit</li>
+          <li>Familie</li>
         </ul>
-      </aside>
-      <section class="center">
-        <h2>Übersicht</h2>
-        <div id="info-box">Wähle eine Aktion links.</div>
-      </section>
+      </div>
+
+      <div class="center">
+        <h3>Übersicht</h3>
+        <p>Beruf: Straßenmusiker</p>
+        <p>Freunde: 3</p>
+        <p>Familienmitglieder: 5</p>
+      </div>
+
+      <div class="sidebar-right">
+        <h3>Ressourcen</h3>
+        <p>Geld: 25 €</p>
+        <p>Gesundheit: 85%</p>
+        <p>Zeit: 16:00 Uhr</p>
+      </div>
     </main>
+
     <footer>
-      <small>v0.1</small>
+      <p>Version 0.1 Alpha</p>
     </footer>
   </div>
-
-  <script src="script.js"></script>
 </body>
 </html>
+
