@@ -3,25 +3,99 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Geburtsspiel</title>
-  <link rel="stylesheet" href="style.css" />
+  <title>Spiel</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+      background: white;
+      text-align: center;
+    }
+
+    #login {
+      margin-top: 30vh;
+    }
+
+    #circle {
+      width: 100px;
+      height: 100px;
+      background: black;
+      border-radius: 50%;
+      margin: 40vh auto 0;
+      cursor: pointer;
+    }
+
+    #babyScene img {
+      width: 200px;
+      margin-top: 30px;
+    }
+  </style>
 </head>
 <body>
-  <div id="loginScreen">
-    <input type="text" id="username" placeholder="Benutzername" />
-    <button onclick="login()">Login</button>
-  </div>
 
-  <div id="birthScene" class="hidden">
-    <img src="baby.jpg" alt="Baby" />
-    <p>Du wirst geboren.</p>
-    <p id="prophezeiungText"></p>
-  </div>
+<div id="login" style="display: none;">
+  <input type="text" id="username" placeholder="Benutzername" />
+  <button onclick="handleLogin()">Login</button>
+</div>
 
-  <div id="mainGame" class="hidden">
-    <div id="logoutCircle" onclick="logout()"></div>
-  </div>
+<div id="babyScene" style="display: none;">
+  <img src="baby.jpg" alt="Baby" />
+  <p>Du wirst geboren.</p>
+  <p id="prophezeiung"></p>
+</div>
 
-  <script src="script.js"></script>
+<div id="main" style="display: none;">
+  <div id="circle" onclick="logout()"></div>
+</div>
+
+<script>
+  const prophezeiungen = [
+    "Du wirst Anwalt.",
+    "Du wirst Verbrecher.",
+    "Du wirst Arzt.",
+    "Du wirst Taxifahrer.",
+    "Du wirst König.",
+    "Du wirst Niemand."
+  ];
+
+  const loggedIn = localStorage.getItem("loggedIn");
+  const wasBorn = localStorage.getItem("wasBorn");
+
+  if (!loggedIn) {
+    document.getElementById("login").style.display = "block";
+  } else if (!wasBorn) {
+    showBirthScene();
+  } else {
+    showMain();
+  }
+
+  function handleLogin() {
+    localStorage.setItem("loggedIn", "true");
+    if (!localStorage.getItem("wasBorn")) {
+      showBirthScene();
+    } else {
+      showMain();
+    }
+    document.getElementById("login").style.display = "none";
+  }
+
+  function showBirthScene() {
+    const zufall = prophezeiungen[Math.floor(Math.random() * prophezeiungen.length)];
+    document.getElementById("prophezeiung").innerText = zufall;
+    document.getElementById("babyScene").style.display = "block";
+    localStorage.setItem("wasBorn", "true");
+  }
+
+  function showMain() {
+    document.getElementById("main").style.display = "block";
+  }
+
+  function logout() {
+    localStorage.clear();
+    location.reload();
+  }
+</script>
+
 </body>
 </html>
