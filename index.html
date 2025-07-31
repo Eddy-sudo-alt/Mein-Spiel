@@ -107,8 +107,11 @@ function showMain() {
   }
 
   function logout() {
-    localStorage.clear();
-    location.reload();
+  localStorage.clear();
+  loginDiv.classList.remove("hidden");
+  babyScene.classList.add("hidden");
+  mainGame.classList.add("hidden");
+
   }
 </script>
 
