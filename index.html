@@ -64,19 +64,21 @@
 
   if (!loggedIn) {
     document.getElementById("login").style.display = "block";
-  } else if (!wasBorn) {
-    showBirthScene();
-  } else {
+  } else if (loggedIn && wasBorn === "true") {
     showMain();
+  } else if (loggedIn && wasBorn !== "true") {
+    showBirthScene();
   }
 
   function handleLogin() {
     localStorage.setItem("loggedIn", "true");
+
     if (!localStorage.getItem("wasBorn")) {
       showBirthScene();
     } else {
       showMain();
     }
+
     document.getElementById("login").style.display = "none";
   }
 
