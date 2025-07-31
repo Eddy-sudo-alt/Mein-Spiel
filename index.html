@@ -99,10 +99,11 @@
     babyScene.classList.remove("hidden");
   }
 
-  function showMain() {
-    babyScene.classList.add("hidden");
-    mainGame.classList.remove("hidden");
-    localStorage.setItem("wasBorn", "true");
+function showMain() {
+  localStorage.setItem("wasBorn", "true");
+  babyScene.classList.add("hidden");
+  mainGame.classList.remove("hidden");}
+
   }
 
   function logout() {
