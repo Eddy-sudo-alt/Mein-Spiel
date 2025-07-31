@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lebensspiel</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="loginScreen" class="screen">
+    <h1>Lebensspiel</h1>
+    <input id="username" placeholder="Benutzername" />
+    <button onclick="login()">Login</button>
+  </div>
+
+  <div id="gameScreen" class="screen hidden">
+    <header>
+      <h1>Willkommen, <span id="playerName"></span></h1>
+      <button onclick="logout()">Logout</button>
+    </header>
+
+    <main class="layout">
+      <aside class="left">
+        <ul>
+          <li onclick="showSection('beruf')">Beruf</li>
+          <li onclick="showSection('freunde')">Freunde</li>
+          <li onclick="showSection('freizeit')">Freizeit</li>
+          <li onclick="showSection('familie')">Familie</li>
+          <li onclick="showSection('postfach')">Postfach</li>
+        </ul>
+      </aside>
+
+      <section class="center">
+        <div id="overviewText">
+          <p>Dies ist deine Spielübersicht.</p>
+        </div>
+      </section>
+
+      <aside class="right">
+        <p>🪙 Geld: <span id="money">100</span> €</p>
+        <p>❤️ Gesundheit: <span id="health">100</span></p>
+        <p>⏳ Zeit: <span id="time">100</span></p>
+      </aside>
+    </main>
+
+    <footer>
+      <p>Version 0.1</p>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
