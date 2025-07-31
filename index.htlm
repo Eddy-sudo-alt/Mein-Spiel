@@ -1,50 +1,47 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lebensspiel</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <title>Mein-Spiel</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div id="loginScreen" class="screen">
-    <h1>Lebensspiel</h1>
-    <input id="username" placeholder="Benutzername" />
-    <button onclick="login()">Login</button>
+  <div id="login-screen">
+    <h1>Willkommen bei Mein-Spiel</h1>
+    <input type="text" id="username" placeholder="Dein Name">
+    <button onclick="login()">Einloggen</button>
   </div>
 
-  <div id="gameScreen" class="screen hidden">
-    <header>
-      <h1>Willkommen, <span id="playerName"></span></h1>
-      <button onclick="logout()">Logout</button>
-    </header>
+  <div id="birth-screen" class="hidden">
+    <h2>Herzlichen Glückwunsch zur Geburt!</h2>
+    <img src="https://via.placeholder.com/200x150.png?text=👶+Baby" alt="Babybild">
+    <p id="prophecy"></p>
+    <button onclick="goToStart()">Weiter</button>
+  </div>
 
-    <main class="layout">
+  <div id="start-screen" class="hidden">
+    <header>
+      <h1>Mein-Spiel</h1>
+      <button id="logout-button" onclick="logout()">Logout</button>
+    </header>
+    <main>
       <aside class="left">
+        <h2>Aktionen</h2>
         <ul>
-          <li onclick="showSection('beruf')">Beruf</li>
-          <li onclick="showSection('freunde')">Freunde</li>
-          <li onclick="showSection('freizeit')">Freizeit</li>
-          <li onclick="showSection('familie')">Familie</li>
-          <li onclick="showSection('postfach')">Postfach</li>
+          <li onclick="showInfo('Beruf')">Beruf</li>
+          <li onclick="showInfo('Freunde')">Freunde</li>
+          <li onclick="showInfo('Freizeit')">Freizeit</li>
+          <li onclick="showInfo('Postfach')">Postfach</li>
+          <li onclick="showInfo('Familie')">Familie</li>
         </ul>
       </aside>
-
       <section class="center">
-        <div id="overviewText">
-          <p>Dies ist deine Spielübersicht.</p>
-        </div>
+        <h2>Übersicht</h2>
+        <div id="info-box">Wähle eine Aktion links.</div>
       </section>
-
-      <aside class="right">
-        <p>🪙 Geld: <span id="money">100</span> €</p>
-        <p>❤️ Gesundheit: <span id="health">100</span></p>
-        <p>⏳ Zeit: <span id="time">100</span></p>
-      </aside>
     </main>
-
     <footer>
-      <p>Version 0.1</p>
+      <small>v0.1</small>
     </footer>
   </div>
 
