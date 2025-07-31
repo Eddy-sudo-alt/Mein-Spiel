@@ -1,22 +1,57 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <title>Mein-Spiel</title>
-  <link rel="stylesheet" href="style.css">
-  <script defer src="script.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mein Spiel</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div id="login">
+
+  <!-- LOGIN -->
+  <div id="login" class="login-box">
     <h2>Login</h2>
-    <input type="text" id="username" placeholder="Benutzername">
+    <input type="text" id="username" placeholder="Benutzername" />
     <button onclick="login()">Einloggen</button>
   </div>
 
-  <div id="game" style="display: none;">
-    <h2>Willkommen, <span id="usernameDisplay"></span>!</h2>
-    <button onclick="logout()">Logout</button>
-    <p>Spielinhalt hier…</p>
+  <!-- INTRO (Geburt + Prophezeiung) -->
+  <div id="intro" class="intro-box" style="display:none;">
+    <h2 id="intro-text">Willkommen!</h2>
+    <p id="prophecy">Du wirst ...</p>
+    <button onclick="continueToGame()">Weiter</button>
   </div>
+
+  <!-- SPIEL -->
+  <div id="game" class="container" style="display:none;">
+    <!-- Linke Spalte -->
+    <div class="sidebar-left">
+      <h3>Aktionen</h3>
+      <ul>
+        <li onclick="selectAction('Beruf')">Beruf</li>
+        <li onclick="selectAction('Freunde')">Freunde</li>
+        <li onclick="selectAction('Freizeit')">Freizeit</li>
+        <li onclick="selectAction('Familie')">Familie</li>
+        <li onclick="selectAction('Postfach')">Postfach</li>
+      </ul>
+    </div>
+
+    <!-- Mitte -->
+    <div class="main-content" id="main-content">
+      <p>Spielinhalt hier...</p>
+    </div>
+
+    <!-- Rechte Spalte -->
+    <div class="sidebar-right">
+      <h3>Spiel</h3>
+      <p><button onclick="logout()">Logout</button></p>
+    </div>
+  </div>
+
+  <footer>
+    <p>Version 0.1</p>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
