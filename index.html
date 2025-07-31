@@ -2,8 +2,8 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Spiel</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Geburtsspiel</title>
   <style>
     body {
       margin: 0;
@@ -11,10 +11,6 @@
       font-family: sans-serif;
       background: white;
       text-align: center;
-    }
-
-    #login {
-      margin-top: 30vh;
     }
 
     #circle {
@@ -26,30 +22,45 @@
       cursor: pointer;
     }
 
+    .hidden {
+      display: none;
+    }
+
     #babyScene img {
       width: 200px;
       margin-top: 30px;
+    }
+
+    #weiterBtn {
+      margin-top: 20px;
+      padding: 10px 20px;
     }
   </style>
 </head>
 <body>
 
-<div id="login" style="display: none;">
+<div id="login" class="hidden">
   <input type="text" id="username" placeholder="Benutzername" />
   <button onclick="handleLogin()">Login</button>
 </div>
 
-<div id="babyScene" style="display: none;">
+<div id="babyScene" class="hidden">
   <img src="baby.jpg" alt="Baby" />
   <p>Du wirst geboren.</p>
   <p id="prophezeiung"></p>
+  <button id="weiterBtn" onclick="showMain()">Weiter</button>
 </div>
 
-<div id="main" style="display: none;">
+<div id="main" class="hidden">
   <div id="circle" onclick="logout()"></div>
 </div>
 
 <script>
+  const loginDiv = document.getElementById("login");
+  const babyScene = document.getElementById("babyScene");
+  const mainGame = document.getElementById("main");
+  const prophecyText = document.getElementById("prophezeiung");
+
   const prophezeiungen = [
     "Du wirst Anwalt.",
     "Du wirst Verbrecher.",
@@ -63,11 +74,11 @@
   const wasBorn = localStorage.getItem("wasBorn");
 
   if (!loggedIn) {
-    document.getElementById("login").style.display = "block";
-  } else if (loggedIn && wasBorn === "true") {
-    showMain();
-  } else if (loggedIn && wasBorn !== "true") {
+    loginDiv.classList.remove("hidden");
+  } else if (loggedIn && !wasBorn) {
     showBirthScene();
+  } else {
+    showMain();
   }
 
   function handleLogin() {
@@ -79,18 +90,19 @@
       showMain();
     }
 
-    document.getElementById("login").style.display = "none";
+    loginDiv.classList.add("hidden");
   }
 
   function showBirthScene() {
     const zufall = prophezeiungen[Math.floor(Math.random() * prophezeiungen.length)];
-    document.getElementById("prophezeiung").innerText = zufall;
-    document.getElementById("babyScene").style.display = "block";
-    localStorage.setItem("wasBorn", "true");
+    prophecyText.innerText = zufall;
+    babyScene.classList.remove("hidden");
   }
 
   function showMain() {
-    document.getElementById("main").style.display = "block";
+    babyScene.classList.add("hidden");
+    mainGame.classList.remove("hidden");
+    localStorage.setItem("wasBorn", "true");
   }
 
   function logout() {
